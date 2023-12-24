@@ -27,7 +27,7 @@ object PluginMain : KotlinPlugin(
     JvmPluginDescription(
         id = "org.example.mirai-autocomplete-brackets",
         name = "让我看看谁没有补全括号",
-        version = "0.1.3"
+        version = "1.0.0"
     ) {
         author("Tackoil")
         info(
