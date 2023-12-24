@@ -6,6 +6,7 @@ import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
 import net.mamoe.mirai.message.data.PlainText
 import net.mamoe.mirai.utils.info
+import org.example.mirai.autobracket.BracketConfig.blacklist
 import org.example.mirai.autobracket.BracketConfig.messagesWithoutLeftBracket
 import org.example.mirai.autobracket.BracketConfig.messagesWithoutRightBracket
 
@@ -55,6 +56,9 @@ object PluginMain : KotlinPlugin(
 
         val eventChannel = GlobalEventChannel.parentScope(this)
         eventChannel.subscribeAlways<GroupMessageEvent> {
+            if(group.id in blacklist) {
+                return@subscribeAlways
+            }
             // 群消息
             val result =
                 analyzeBracket(message.filterIsInstance<PlainText>().joinToString(separator = "") { it.content })

@@ -5,6 +5,19 @@ import net.mamoe.mirai.console.data.*
 object BracketConfig : AutoSavePluginConfig("config") {
     @ValueDescription(
         """
+        黑名单
+        """
+    )
+    val blacklist by value(
+        listOf(
+            // 添加L避免被推断为Int类型
+            114514L,
+            1919810L
+        )
+    )
+
+    @ValueDescription(
+        """
         应当自动补全的括号列表
         格式为 `- '左半括号:右半括号'`
         """
